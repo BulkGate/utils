@@ -1,0 +1,7 @@
+{
+  "name": "bulkgate/utils",
+  "description": "package under development",
+  "autoload": {
+    "classmap": ["src/"]
+  }
+}
