@@ -18,8 +18,6 @@ namespace BulkGate
 
 namespace BulkGate\Utils
 {
-
-
     class JsonException extends \Exception
     {
     }
