@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -28,22 +28,22 @@ class Locale
     /** @var IntlDateFormatter */
     private $time_formatter;
 
-    public function __construct(string $locale, ?\DateTimeZone $timeZone = null)
+    public function __construct($locale, \DateTimeZone $timeZone = null)
     {
         if(extension_loaded('intl'))
         {
-            $this->number_formatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
-            $this->currency_formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
-            $this->datetime_formatter = new IntlDateFormatter($locale,
+            $this->number_formatter = new NumberFormatter((string) $locale, NumberFormatter::DECIMAL);
+            $this->currency_formatter = new NumberFormatter((string) $locale, NumberFormatter::CURRENCY);
+            $this->datetime_formatter = new IntlDateFormatter((string) $locale,
                 IntlDateFormatter::MEDIUM,
                 IntlDateFormatter::MEDIUM,
                 $timeZone ? $timeZone->getName() : null
             );
-            $this->date_formatter = new IntlDateFormatter($locale,
+            $this->date_formatter = new IntlDateFormatter((string) $locale,
                 IntlDateFormatter::MEDIUM,
                 IntlDateFormatter::NONE
             );
-            $this->time_formatter = new IntlDateFormatter($locale,
+            $this->time_formatter = new IntlDateFormatter((string) $locale,
                 IntlDateFormatter::NONE,
                 IntlDateFormatter::MEDIUM,
                 $timeZone ? $timeZone->getName() : null
@@ -56,46 +56,46 @@ class Locale
     }
 
 
-    public function price(float $price, ?string $currency = null): string
+    public function price($price, $currency = null)
     {
         if($currency === null)
         {
-            return $this->float($price);
+            return $this->float((float) $price);
         }
 
-        if($p = $this->currency_formatter->formatCurrency($price, strtoupper($currency)))
+        if($p = $this->currency_formatter->formatCurrency((float) $price, strtoupper((string) $currency)))
         {
             return $p;
         }
-        return $this->float($price).$currency;
+        return $this->float((float) $price). (string) $currency;
     }
 
 
-    public function float(float $number): string
+    public function float($number)
     {
-        return $this->number_formatter->format($number, NumberFormatter::TYPE_DOUBLE);
+        return $this->number_formatter->format((float) $number, NumberFormatter::TYPE_DOUBLE);
     }
 
 
-    public function int(float $number): string
+    public function int($number)
     {
-        return $this->number_formatter->format($number, NumberFormatter::TYPE_INT64);
+        return $this->number_formatter->format((float) $number, NumberFormatter::TYPE_INT64);
     }
 
 
-    public function datetime(\DateTime $dateTime): string
+    public function datetime(\DateTime $dateTime)
     {
         return $this->datetime_formatter->format($dateTime);
     }
 
 
-    public function date(\DateTime $date): string
+    public function date(\DateTime $date)
     {
         return $this->date_formatter->format($date);
     }
 
 
-    public function time(\DateTime $date): string
+    public function time(\DateTime $date)
     {
         return $this->time_formatter->format($date);
     }

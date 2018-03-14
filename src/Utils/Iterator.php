@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -27,7 +27,7 @@ class Iterator implements \Iterator
 
     function get($key)
     {
-        return $this->array[$key] ?? null;
+        return isset($this->array[$key]) ? $this->array[$key] : null;
     }
 
     function set($key, $value)

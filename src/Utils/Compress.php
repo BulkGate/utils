@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -18,9 +18,9 @@ class Compress
 	 * @param int $encoding_mode
 	 * @return string
 	 */
-	public static function compress($data, int $encoding_mode = 9): string
+	public static function compress($data, $encoding_mode = 9)
 	{
-		return base64_encode(gzencode(serialize($data), $encoding_mode));
+		return (string) base64_encode(gzencode(serialize($data), (int) $encoding_mode));
 	}
 
 

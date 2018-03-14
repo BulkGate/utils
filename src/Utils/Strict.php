@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -13,9 +13,9 @@ trait Strict
      * @param string $name
      * @throws StrictException
      */
-    public function &__get(string $name)
+    public function &__get($name)
     {
-        throw new StrictException('You can\'t read from undeclared property '.__CLASS__.'::$'.$name);
+        throw new StrictException('You can\'t read from undeclared property '.__CLASS__.'::$'.(string) $name);
     }
 
 
@@ -24,9 +24,9 @@ trait Strict
      * @param mixed $value
      * @throws StrictException
      */
-    public function __set(string $name, $value)
+    public function __set($name, $value)
     {
-        throw new StrictException('You can\'t write to undeclared property '.__CLASS__.'::$'.$name);
+        throw new StrictException('You can\'t write to undeclared property '.__CLASS__.'::$'.(string) $name);
     }
 
 
@@ -34,7 +34,7 @@ trait Strict
      * @param string $name
      * @return bool
      */
-    public function __isset(string $name)
+    public function __isset($name)
     {
         return false;
     }
@@ -44,9 +44,9 @@ trait Strict
      * @param string $name
      * @throws StrictException
      */
-    public function __unset(string $name)
+    public function __unset($name)
     {
-        throw new StrictException('You can\'t unset undeclared property '.__CLASS__.'::$'.$name);
+        throw new StrictException('You can\'t unset undeclared property '.__CLASS__.'::$'.(string) $name);
     }
 
 
@@ -55,9 +55,9 @@ trait Strict
      * @param array $arguments
      * @throws StrictException
      */
-    public function __call(string $name, array $arguments)
+    public function __call($name, array $arguments)
     {
-        throw new StrictException('You can\'t call undeclared method '.__CLASS__.'::$'.$name);
+        throw new StrictException('You can\'t call undeclared method '.__CLASS__.'::$'.(string) $name);
     }
 
 
@@ -66,8 +66,8 @@ trait Strict
      * @param array $arguments
      * @throws StrictException
      */
-    public static function __callStatic(string $name, array $arguments)
+    public static function __callStatic($name, array $arguments)
     {
-        throw new StrictException('You can\'t statically call undeclared method '.__CLASS__.'::$'.$name);
+        throw new StrictException('You can\'t statically call undeclared method '.__CLASS__.'::$'.(string) $name);
     }
 }
