@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: BulkGate\Utils\Connection
@@ -36,9 +36,9 @@ Assert::equal($string, BulkGate\Utils\Json::decode(BulkGate\Utils\Json::encode($
 
 Assert::exception(function () {
     BulkGate\Utils\Json::decode("}");
-}, BulkGate\Utils\JsonException::class);
+}, "BulkGate\\Utils\\JsonException");
 
 Assert::exception(function () {
     BulkGate\Utils\Json::decode("");
-}, BulkGate\Utils\JsonException::class);
+}, "BulkGate\\Utils\\JsonException");
 

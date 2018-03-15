@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
 
 // The Nette Tester command-line runner can be
 // invoked through the command: ../vendor/bin/tester .
 
-if (!require __DIR__ . '/../../../../vendor/autoload.php') {
+if (!require 'c:\\\\Work\\www\\bulkgate\\_application\\vendor\\autoload.php') {
+//if (!require __DIR__ . '/../../../../vendor/autoload.php') {
 	echo 'Install Nette Tester using `composer install`';
 	exit(1);
 }

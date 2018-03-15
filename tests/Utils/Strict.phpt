@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: BulkGate\Strict
@@ -33,23 +33,23 @@ $object = new class ()
 
 Assert::exception(function () use ($object) {
     $object->undefined = 'undefined';
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
 
 Assert::exception(function () use ($object) {
     echo $object->undefined;
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
 
 Assert::exception(function () use ($object) {
     unset($object->undefined);
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
 
 Assert::exception(function () use ($object) {
     $object->undefined();
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
 
 Assert::exception(function () use ($object) {
     $object::undefined();
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
 
 Assert::false(isset($object->undefined));
 
@@ -67,4 +67,4 @@ unset($object->defined);
 
 Assert::exception(function () use ($object) {
     echo $object->defined;
-}, BulkGate\StrictException::class);
+}, "BulkGate\\StrictException");
