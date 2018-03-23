@@ -7,7 +7,7 @@
 
 namespace BulkGate
 {
-    class Exceptions extends \Exception
+    class Exception extends \Exception
     {
     }
 
