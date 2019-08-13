@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /**
- * @author Lukáš Piják 2018 TOPefekt s.r.o.
+ * @author Lukáš Piják 2019 TOPefekt s.r.o.
  * @link https://www.bulkgate.com/
  */
 
@@ -25,45 +25,54 @@ class Iterator implements \Iterator
         $this->position = 0;
     }
 
+
     function get($key)
     {
         return $this->array[$key] ?? null;
     }
+
 
     function set($key, $value)
     {
         return $this->array[$key] = $value;
     }
 
+
     function rewind()
     {
         reset($this->array);
     }
+
 
     function current()
     {
         return current($this->array);
     }
 
+
     function key()
     {
         return key($this->array);
     }
+
 
     function next()
     {
         next($this->array);
     }
 
+
     function valid()
     {
         return key($this->array) !== null;
     }
 
+
     function count()
     {
         return count($this->array);
     }
+
 
     function add($value)
     {

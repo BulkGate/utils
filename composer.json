@@ -1,7 +1,7 @@
 {
   "name": "bulkgate/utils",
-  "description": "Generic utilites for BulkGate portal PHP SDK",
-  "keywords": ["sms", "bulkgate", "json", "compress", "strict", "iterator"],
+  "description": "Generic utilities for BulkGate portal PHP SDK",
+  "keywords": ["sms", "bulkgate", "json", "compress", "strict", "iterator", "intl"],
   "homepage": "https://www.bulkgate.com",
   "license": ["BSD-3-Clause"],
   "authors": [
@@ -15,7 +15,12 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0"
+    "php": ">=7.1.0",
+    "ext-json": "*",
+    "ext-zlib": "*"
+  },
+  "suggest": {
+    "ext-intl": "*"
   },
   "require-dev": {
     "nette/tester": "~2.0",
@@ -23,6 +28,5 @@
   },
   "autoload": {
     "classmap": ["src/"]
-  },
-  "minimum-stability": "dev"
+  }
 }
