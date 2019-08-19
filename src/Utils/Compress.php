@@ -30,6 +30,6 @@ class Compress
 	 */
 	public static function decompress($data)
 	{
-		return unserialize(gzdecode(base64_decode($data, true)));
+		return unserialize(gzdecode(base64_decode($data)));
 	}
 }
