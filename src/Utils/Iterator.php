@@ -78,4 +78,9 @@ class Iterator implements \Iterator
     {
         $this->array[] = $value;
     }
+    
+    function remove($key)
+    {
+        unset($this->array[$key]);
+    }
 }
