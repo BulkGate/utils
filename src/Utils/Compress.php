@@ -18,9 +18,15 @@ class Compress
 	 * @param int $encoding_mode
 	 * @return string
 	 */
-	public static function compress($data, int $encoding_mode = 9): string
+	public static function compress($data, int $encoding_mode = 9): ?string
 	{
-		return base64_encode(gzencode(serialize($data), $encoding_mode));
+	    $data = gzencode(serialize($data), $encoding_mode);
+
+	    if ($data !== false)
+        {
+            return base64_encode($data);
+        }
+        return null;
 	}
 
 
@@ -30,6 +36,22 @@ class Compress
 	 */
 	public static function decompress($data)
 	{
-		return unserialize(gzdecode(base64_decode($data)));
+	    $data = base64_decode($data);
+
+	    if ($data !== false)
+        {
+            $data = gzdecode($data);
+
+            if ($data !== false)
+            {
+                $data = @unserialize($data);
+
+                if ($data !== false)
+                {
+                    return $data;
+                }
+            }
+        }
+        return null;
 	}
 }
