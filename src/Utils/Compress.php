@@ -11,34 +11,36 @@ use BulkGate;
 
 class Compress
 {
-	use BulkGate\Strict;
+    use BulkGate\Strict;
 
-	/**
-	 * @param $data
-	 * @param int $encoding_mode
-	 * @return string
-	 */
-	public static function compress($data, int $encoding_mode = 9): ?string
-	{
-	    $data = gzencode(serialize($data), $encoding_mode);
 
-	    if ($data !== false)
+    /**
+     * @param $data
+     * @param int $encoding_mode
+     * @return string
+     */
+    public static function compress($data, int $encoding_mode = 9): ?string
+    {
+        $data = gzencode(serialize($data), $encoding_mode);
+
+        if ($data !== false)
         {
             return base64_encode($data);
         }
+
         return null;
-	}
+    }
 
 
-	/**
-	 * @param string $data
-	 * @return mixed
-	 */
-	public static function decompress($data)
-	{
-	    $data = base64_decode($data);
+    /**
+     * @param string $data
+     * @return mixed
+     */
+    public static function decompress(string $data)
+    {
+        $data = base64_decode($data);
 
-	    if ($data !== false)
+        if ($data !== false)
         {
             $data = gzdecode($data);
 
@@ -52,6 +54,7 @@ class Compress
                 }
             }
         }
+
         return null;
-	}
+    }
 }
